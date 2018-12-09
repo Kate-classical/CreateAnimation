@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="WpfApp2.UserSprites.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d" Name="usercontrol1"
+             MouseDown="OnMouseDown" MouseUp="OnMouseUp"
+             HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding Width}"  >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition></RowDefinition> 
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="0" Stretch="Uniform">
+            <Border CornerRadius="5"  BorderThickness="5" BorderBrush="{Binding Color}">
+                <Border BorderThickness="1" BorderBrush="White" Height="23">
+                    <TextBlock Foreground="AliceBlue" Text="{Binding Text}" Name="textScript" FontWeight="Bold" FontStyle="Normal" FontFamily="Calibri" FontSize="18" 
+                       Margin="0,0,0,0" Width="{Binding Width}" Background="{Binding Color}"/>
+                </Border>
+            </Border>
+        </Viewbox>
+        <TextBox Grid.Row="0" Margin="0 5 3 0" Name="textCount"  Height="{Binding PointWhike}"  HorizontalAlignment="Right" TextWrapping="Wrap"  FontSize="10" VerticalAlignment="Top" Width="25" 
+                 LostFocus="textCount_LostFocus" >
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="5" Padding="3" Background="White" BorderThickness="1" BorderBrush="AliceBlue">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+        <StackPanel Margin="0,0,0,0" Orientation="Horizontal" FlowDirection="LeftToRight" Grid.Row="1">
+            <StackPanel Name="Increase"  Height="{Binding HeightFor}" Background="{Binding Color}"  Width="20" ></StackPanel>
+        </StackPanel>
+        <StackPanel Name="BOTTON" Orientation="Horizontal" FlowDirection="LeftToRight" Grid.Row="2">
+            <TextBlock  Background="{Binding Color}"  Width="100"  Height="{Binding HeighDown}" ></TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

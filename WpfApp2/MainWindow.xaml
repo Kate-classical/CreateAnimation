@@ -1,0 +1,338 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:local1="clr-namespace:WpfApp2.UserSprites"
+        mc:Ignorable="d"
+        Title="AnimationProgram" Height="600" Width="1000">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="Last">
+            <!--Объявляем стиль и целевой тип -->
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <!--Сглаживание-->
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <!--Переопределяем стандартный стиль-->
+
+
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+
+            <!-- <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" /> -->
+            <Setter Property="Width" Value="100" />
+            <!--   Ширина кнопки-->
+            <Setter Property="Background" Value="LightBlue" />
+            <Setter Property="Height" Value="20" />
+            <!--Высота кнопки -->
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Template">
+                <!--Шаблон-->
+                <Setter.Value>
+
+                    <!--Содержание шаблона-->
+                    <ControlTemplate TargetType="Button">
+                        <!--Объявляем контейнер для UIelement и задаем конструируемый тип-->
+                        <Border TextBlock.Foreground="White"
+                                TextBlock.FontSize="10"
+                                x:Name="Border"
+                                CornerRadius="10"
+                                BorderThickness="0"
+                                TextBlock.FontFamily="Century Gothic"
+                            >
+                            <!--Объявляем элемент Border и свойства: цвет текста, имя, скругление углов, толщина границы-->
+                            <Border.Background>
+                                <!--Объявляем фон-->
+                                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                                    <!--Объявляем градиент-->
+                                    <GradientStopCollection>
+                                        <!--Контейнер точек градиента-->
+                                        <GradientStop Color="Blue" Offset="0" />
+                                        <!--Верхняя точка градиента-->
+                                        <GradientStop Color="Blue" Offset="1" />
+                                        <!--Нижняя точка градиента-->
+                                    </GradientStopCollection>
+                                    <!--Закрываюищй тег коллекции точек-->
+                                </LinearGradientBrush>
+                                <!--Закрываюищй тег градиента-->
+                            </Border.Background>
+                            <!--Закрываюищй тег фона-->
+                            <VisualStateManager.VisualStateGroups>
+                                <!--Контейнер для групп событий-->
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <!--Контейнер таймингов переходов-->
+                                        <VisualTransition GeneratedDuration="0:0:0.5" />
+                                        <!--Стандартный переход из состояния в состояние-->
+                                        <VisualTransition GeneratedDuration="0" To="Pressed" />
+                                        <!--Переход при нажатии-->
+                                    </VisualStateGroup.Transitions>
+                                    <!--Закрываюищй тег контейнера таймингов-->
+                                    <VisualState x:Name="MouseOver">
+                                        <!--Открывающий тег события MouseOver-->
+                                        <Storyboard>
+                                            <!--Контейнер кадров-->
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" 
+                                                                          Storyboard.TargetName="Border">
+                                                <!--Анимация цвета с использование ключевых кадров-->
+                                                <EasingColorKeyFrame KeyTime="0" Value="Blue" />
+                                                <!--Функция плавности-->
+                                            </ColorAnimationUsingKeyFrames>
+                                            <!--Закрываюищй тег анимации-->
+                                        </Storyboard>
+                                        <!--Закрываюищй тег контейнера кадров-->
+                                    </VisualState>
+                                    <!--Закрывающий тег MouseOver-->
+                                    <VisualState x:Name="Normal"/>
+                                    <!--Дефолтное значение-->
+                                    <VisualState x:Name="Pressed">
+                                        <!--Открывающий тег события Pressed-->
+                                        <Storyboard>
+                                            <!--Контейнер кадров-->
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" 
+                                                                          Storyboard.TargetName="Border">
+                                                <!--Анимация цвета с использование ключевых кадров-->
+                                                <EasingColorKeyFrame KeyTime="0" Value="AliceBlue" />
+                                                <!--Функция плавности-->
+                                            </ColorAnimationUsingKeyFrames>
+                                            <!--Закрываюищй тег анимации-->
+                                        </Storyboard>
+                                        <!--Закрываюищй тег контейнера кадров-->
+                                    </VisualState>
+                                    <!--Закрывающий тег Pressed-->
+                                </VisualStateGroup>
+                                <!--Закрывающий тег группы CommonStates-->
+                            </VisualStateManager.VisualStateGroups>
+                            <!--Закрывающий тег для групп событий-->
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                        <!--Закрываюищй тег Border-->
+                    </ControlTemplate>
+                    <!--Закрываюищй тег контейнера-->
+                </Setter.Value>
+                <!--Закрывающий тег содержания-->
+            </Setter>
+            <!--Закрываюищй тег шаблона-->
+        </Style>
+        <ObjectDataProvider ObjectInstance="{x:Type Colors}" MethodName="GetProperties" x:Key="colorPropertiesOdp" />
+
+
+
+
+
+
+        <Style TargetType="Border" x:Key="bbbb">
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="LightBlue" />
+                    <Setter Property="Background" Value="LightBlue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition  Width="225*"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="421*"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock FontFamily="Monotype Corsiva" FontSize="20" TextAlignment="Center" Foreground="Black" Background="LightGray">Спрайты</TextBlock>
+
+            <Button  Grid.Row="3" FontFamily="Georgia" FontSize="16"  Foreground="White" Content="Условия" Background="BlueViolet" BorderThickness="0" Margin="100,0,0,0" Click="Button_Click_6"/>
+
+
+            <Button FontFamily="Georgia" FontSize="16" Margin="0,0,100,0" Grid.Row="3" Content="Элементы"   Foreground="White"  Background="LimeGreen" Click="Button_Click_5"></Button>
+            <Button FontFamily="Georgia" FontSize="16" Grid.Row="1"  Foreground="White" Background="Blue" Margin="0,0,100,0" Content="Действия" Click="Button_Click"></Button>
+            <Button FontFamily="Georgia" FontSize="16" Grid.Row="1" Foreground="White" Content="Циклы" Background="Orange"   Margin="100,0,0,0" Click="Button_Click_1"/>
+            <Button FontFamily="Georgia" FontSize="16" Foreground="White" Content="Управление" Background="Brown" Grid.Row="2" Margin="0,0,100,0" Click="Button_Click_2"/>
+            <Button FontFamily="Georgia" FontSize="16" Foreground="White" Grid.Row="2" Background="HotPink"  Margin="100,0,0,0" Content="События" Click="Button_Click_3"/>
+            <Canvas Background="LightGray" Name="aaaa" Grid.Row="4">
+
+
+
+                <ItemsControl  ItemsSource="{Binding Squares1}" 
+                                       Height="500" Background="Beige"  
+                                       Name="SquaresPanel" Loaded="Squares_Loaded" Drop="Squares_Drop" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <!-- хост списка элементов - канвас, чтобы можно было
+                         произвольно устанавливать координаты -->
+                            <Canvas IsItemsHost="True" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- сам квадрат вынесем в отдельный UserControl -->
+                            <local1:UserControl1 DraggedImageContainer="{Binding ElementName=DraggedImageContainer}"
+                         TextScriptCommand="{Binding ElementName=TextScriptCommand}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <!-- а это привязка координат контейнера к VM -->
+                            <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>
+                            <Setter Property="Canvas.Top" Value="{Binding Position.Y}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+
+
+
+            </Canvas>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock FontFamily="Monotype Corsiva" FontSize="20" TextAlignment="Center" Foreground="Black" Grid.Row="0" Background="Beige" >Компилятор</TextBlock>
+        <Canvas  Name="Compilar" Grid.Row="1" Background="Beige"  MouseLeftButtonUp="Compilar_MouseLeftButtonUp">
+        </Canvas>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock FontFamily="Monotype Corsiva" FontSize="20" TextAlignment="Center" Foreground="Black" Grid.Row="0"  >Объекты</TextBlock>
+           
+          <StackPanel MouseLeftButtonUp="Compilar_MouseLeftButtonUp" Grid.Row="1" Width="80" Name="repImages"/>
+        </Grid>
+        
+        <Canvas MouseLeftButtonUp="Compilar_MouseLeftButtonUp"  Grid.Column="3"  Background="AliceBlue" Name="pictureBox" >
+
+
+
+
+        </Canvas>
+        <ToolBarTray MouseLeftButtonUp="Compilar_MouseLeftButtonUp"  Orientation="Vertical" Grid.Column="4">
+            <ToolBar VerticalAlignment="Top" >
+                <Button  Height="50" Width="70" Click="Button_Click_4">
+                    <Image Width="60" Height="40" Source="Resources/play.png"></Image>
+                </Button>
+
+                <Button Height="50" Width="70" Click="Button_Click_7">
+                    <Image Width="60" Height="40" Source="Resources/stop.png"></Image>
+                </Button>
+
+                <Separator/>
+
+                <RadioButton Height="50" Width="70" x:Name="ItemCursor" Background="AliceBlue" Checked="ItemLine_Checked">
+                    <Image Width="60" Height="40" Source="Resources/cursor.png"></Image>
+                </RadioButton>
+                <!--  <RadioButton Height="20" Width="70" x:Name="ItemLine" Background="AliceBlue" Content="Линия" Checked="ItemLine_Checked"></RadioButton> -->
+                <RadioButton Height="50" Width="70" x:Name="ItemRectangle" Background="AliceBlue" FontSize="9" Checked="ItemLine_Checked">
+                    <Image Width="60" Height="40" Source="Resources/rectangle.png"></Image>
+                </RadioButton>
+                <RadioButton Height="50" Width="70" x:Name="ItemEllipse" Background="AliceBlue" Checked="ItemLine_Checked">
+                    <Image Width="60" Height="40" Source="Resources/ellipse.png"></Image>
+                </RadioButton>
+                <RadioButton Height="50" Width="70" x:Name="ItemAdd" Background="AliceBlue" Checked="ItemLine_Checked">
+                    <Image Width="60" Height="40" Source="Resources/hand-cursor.png"></Image>
+                </RadioButton>
+                <RadioButton Height="50" Width="70" x:Name="ItemAddInButton" Background="AliceBlue" Checked="ItemLine_Checked">
+                    <Image Width="60" Height="40" Source="Resources/plus.png"></Image>
+                </RadioButton>
+                <Button Height="50" Width="70" x:Name="RemoveListSprites" Background="AliceBlue" Click="RemoveListSprites_Click">
+                    <Image Width="60" Height="40" Source="Resources/clear-shopping-cart.png"></Image>
+                </Button>
+
+                <Separator/>
+
+                <ComboBox x:Name="thickessBox" SelectedIndex="1" SelectionChanged="thickessBox_SelectionChanged">
+                    <ComboBoxItem TabIndex="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="Black" Height="3" Width="30"/>
+                            <TextBlock Margin="8,0,0,0" ><Run Text="1"/></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem TabIndex="2">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="Black" Height="4" Width="30"/>
+                            <TextBlock Margin="8,0,0,0" ><Run Text="2"/></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem TabIndex="3">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="Black" Height="5" Width="30"/>
+                            <TextBlock Margin="8,0,0,0" ><Run Text="3"/></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem TabIndex="4">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="Black" Height="6" Width="30"/>
+                            <TextBlock Margin="8,0,0,0" ><Run Text="4"/></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem TabIndex="5">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="Black" Height="7" Width="30"/>
+                            <TextBlock Margin="8,0,0,0" ><Run Text="5"/></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                </ComboBox>
+
+                <Separator/>
+
+                <ComboBox x:Name="ColorFill" HorizontalAlignment="Left" Width="51"
+        						ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}"
+        						SelectedValuePath="Name" SelectedIndex="0" Margin="9,9,0,0" Height="24" VerticalAlignment="Top" SelectionChanged="ColorFill_SelectionChanged" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="Color">
+                            <StackPanel Orientation="Horizontal" Height="16" Margin="0,0,0,2">
+                                <Border BorderThickness="1" CornerRadius="2"
+        										BorderBrush="Black" Width="20" VerticalAlignment="Stretch"
+        										Background="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox x:Name="ColorStroke" HorizontalAlignment="Left" Width="51"
+        						ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}"
+        						SelectedValuePath="Name" SelectedIndex="0" Margin="9,9,0,0" Height="24" VerticalAlignment="Top" SelectionChanged="ColorStroke_SelectionChanged" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="Color">
+                            <StackPanel Orientation="Horizontal" Height="16" Margin="0,0,0,2">
+                                <Border Name="stroke" BorderThickness="1" CornerRadius="2"
+        										BorderBrush="Black" Width="20" VerticalAlignment="Stretch"
+        										Background="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </ToolBar>
+        </ToolBarTray>
+        <Canvas  IsHitTestVisible="False"  Name="rec">
+
+            <Rectangle Opacity="0.4" Name="DraggedImageContainer" Visibility="Collapsed"
+                RenderTransformOrigin="0.5,0.5"       >
+                <Rectangle.RenderTransform>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Canvas>
+
+        <TextBox Name="FocusControl" HorizontalAlignment="Left" Width="0" Height="0"/>
+    </Grid>
+</Window>
